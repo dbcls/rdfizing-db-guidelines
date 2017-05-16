@@ -49,32 +49,18 @@ Dataの原則2で、http://
 
 -   PURLを利用する
 
-他によく用いられるケースとして、永続的なURLである[Persistent URL
-(PURL)](https://en.wikipedia.org/wiki/Persistent_uniform_resource_locator)を利用してデータを記述する方法があります。RDFはPURLのURIを用いて記述し、PURLからデータを運用する実体のURLに転送(リダイレクト)することで、実体が移転した場合にもRDFデータの変更を伴わずに同じURIを持続して利用することができます。NBDCでは、研究機関のデータベース運用のために
-[purl.jp](http://purl.jp/docs/)
-サービスを提供しています。PURLサービスで転送を管理することにより、常にそのときアクセスできる最新のURIを指し示すことができます。
+他によく用いられるケースとして、永続的なURLである[Persistent URL(PURL)](https://en.wikipedia.org/wiki/Persistent_uniform_resource_locator)を利用してデータを記述する方法があります。RDFはPURLのURIを用いて記述し、PURLからデータを運用する実体のURLに転送(リダイレクト)することで、実体が移転した場合にもRDFデータの変更を伴わずに同じURIを持続して利用することができます。NBDCでは、研究機関のデータベース運用のために
+[purl.jp](http://purl.jp/docs/) サービスを提供しています。PURLサービスで転送を管理することにより、常にそのときアクセスできる最新のURIを指し示すことができます。
 
 #### 1.1.2 リソースを示すURIはそれを識別するためのIDをURIの末尾に記述する
 
-永続性の高いドメイン部分に続く、URIのパス部分については、モノやコトを表す記述対象のリソースを識別するIDがURIの最後に来るようにし、その直前にスラッシュ(/)を用いることが推奨されます。
-例えばUniProtではQ6GZX3というIDで識別されるタンパク質について
-<http://purl.uniprot.org/uniprot/Q6GZX3>
-というURIを割り当てています。このようにURIを構成することで、Linked
-Dataの原則3で示される、「URIにアクセスした時にRDFやSPARQLなどの標準に沿って有用な情報を提供する」サービスの構築が技術的に実現し易くなります。
+永続性の高いドメイン部分に続く、URIのパス部分については、モノやコトを表す記述対象のリソースを識別するIDがURIの最後に来るようにし、その直前にスラッシュ(/)を用いることが推奨されます。例えばUniProtではQ6GZX3というIDで識別されるタンパク質について <http://purl.uniprot.org/uniprot/Q6GZX3> というURIを割り当てています。このようにURIを構成することで、Linked Dataの原則3で示される、「URIにアクセスした時にRDFやSPARQLなどの標準に沿って有用な情報を提供する」サービスの構築が技術的に実現し易くなります。
 
-なお、オントロジーのURIでは、そのオントロジーを構成する概念を示すIDごとに個別のページを作る場合は、上記と同じようにIDの直前にスラッシュ(/)を、オントロジー全体が１つのページで提供される場合は、IDの直前をスラッシュの代わりにハッシュ(\#)としておくのが良いでしょう。例として、UniProtのオントロジー
-<http://purl.uniprot.org/core/>
-ではProteinなどの概念が個別のページで提供されているため、http://purl.uniprot.org/core/Protein
-のようにスラッシュ(/)が使用されています。一方、配列位置情報のオントロジーFALDO
-<http://biohackathon.org/resource/faldo>
-では、Positionなどの概念が同じページで提供されているため、URIフラグメントの記法を用いて
-<http://biohackathon.org/resource/faldo#Position>
-のようにハッシュ(\#)が使用されています。
+なお、オントロジーのURIでは、そのオントロジーを構成する概念を示すIDごとに個別のページを作る場合は、上記と同じようにIDの直前にスラッシュ(/)を、オントロジー全体が１つのページで提供される場合は、IDの直前をスラッシュの代わりにハッシュ(\#)としておくのが良いでしょう。例として、UniProtのオントロジー `http://purl.uniprot.org/core/` ではProteinなどの概念が個別のページで提供されているため、`http://purl.uniprot.org/core/Protein` のようにスラッシュ(/)が使用されています。一方、配列位置情報のオントロジー[FALDO](http://biohackathon.org/resource/faldo) では、Positionなどの概念が同じページで提供されているため、URIフラグメントの記法を用いて`http://biohackathon.org/resource/faldo#Position`のようにハッシュ(\#)が使用されています。
 
 #### 1.1.3 URIにはバージョンを含めない
 
-バージョン番号が含まれているURI（https://www.ncbi.nlm.nih.gov/protein/NP_003024.1 等）を用いる場合、URIからバージョン番号を除いたURIの利用を推奨します。そうすることによって、オリジナルのURIのバージョンが変更されても、RDFは変更しなくてもすみます。最新のバージョンを知りたい場合は、togows.org
-を用いることで、最新バージョンを取得することができます。
+バージョン番号が含まれているURI（https://www.ncbi.nlm.nih.gov/protein/NP_003024.1 等）を用いる場合、URIからバージョン番号を除いたURIの利用を推奨します。そうすることによって、オリジナルのURIのバージョンが変更されても、RDFは変更しなくてもすみます。最新のバージョンを知りたい場合は、[`TogoWS`](http://togows.org) を利用することで、対応しているデータベースに関しては、次のような方法で、各データベースの最新バージョンを取得することができます。
 
 ```
 http://togows.org/entry/ncbi-protein/145579718/version
@@ -294,7 +280,7 @@ RDFはURI、空白ノード、リテラルの組み合わせで構成されま�
 | PROV-O | http://www.w3.org/ns/prov# | [仕様 [英語](http://www.w3.org/TR/prov-o/)], [Home](http://qudt.org/), [BioPortal](http://bioportal.bioontology.org/ontologies/PROVO) |
 | PAV | http://purl.org/pav/ |[仕様 [英語](http://www.essepuntato.it/lode/http://purl.org/pav/2.0/)], [BioPortal](http://bioportal.bioontology.org/ontologies/PAV) |
 | XSD | http://www.w3.org/2001/XMLSchema# ||
-| DCAT | http://www.w3.org/ns/dcat# | []仕様 [英語](https://www.w3.org/TR/vocab-dcat/)], [[日本語](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rdf/REC-vocab-dcat-20140116.html)] |
+| DCAT | http://www.w3.org/ns/dcat# | [仕様 [英語](https://www.w3.org/TR/vocab-dcat/)], [[日本語](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rdf/REC-vocab-dcat-20140116.html)] |
 | BIBO | http://purl.org/ontology/bibo/ | [Home](http://bibliontology.com/),[[GitHub](https://github.com/structureddynamics/Bibliographic-Ontology-BIBO)] |
 | Event |<http://purl.org/NET/c4dm/event.owl#> | [Home](http://motools.sourceforge.net/event/event.html) |
 | GEO | http://www.w3.org/2003/01/geo/wgs84_pos# | [Home](https://www.w3.org/2003/01/geo/)|
@@ -331,7 +317,7 @@ RDFはURI、空白ノード、リテラルの組み合わせで構成されま�
   | MMO | Measurement Method Ontology | http://purl.obolibrary.org/obo/ | [Home](http://phenoonto.sourceforge.net/), [BioPortal](http://purl.bioontology.org/ontology/MMO) |
   | XCO | Experimental Conditions Ontology | http://purl.obolibrary.org/obo/ |    [Home](http://phenoonto.sourceforge.net/), [BioPortal](http://bioportal.bioontology.org/ontologies/XCO) |
   |OrthO | Ortholog Ontology | http://purl.jp/bio/11/orth# |                      [Home](http://mbgd.genome.ad.jp/ontology/), [BioPortal](http://bioportal.bioontology.org/ontologies/ORTHO) |
-  |PIERO | PIERO Enzyme Reaction Ontology |[Home](http://reactionontology.org/)|
+  |PIERO | PIERO Enzyme Reaction Ontology　| |[Home](http://reactionontology.org/)|
   |GlycoRDF | Glycan Ontology| http://purl.jp/bio/12/glyco/glycan# |               [Home](https://github.com/ReneRanzinger/GlycoRDF), [BioPortal](http://bioportal.bioontology.org/ontologies/GLYCORDF) |
 
 
@@ -562,6 +548,8 @@ webをグローバルなデータ空間にする仕組み](http://ci.nii.ac.jp/n
 #### RDF化ガイドラインに対するコメントを自由に書き込むページ
 
 -   [RDF化ガイドラインへのコメント](http://wiki.lifesciencedb.jp/mw/RDFizingDatabaseGuidelineComments)
+
+* * *
 
 #### History
 
