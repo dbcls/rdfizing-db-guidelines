@@ -1,0 +1,1 @@
+# rdfizing-db-guidelines
