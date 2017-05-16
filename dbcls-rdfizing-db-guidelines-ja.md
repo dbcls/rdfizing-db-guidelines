@@ -1,52 +1,22 @@
 # DBCLSデータベースRDF化ガイドライン
 
-バージョン 1.5.0 as of “2015-12-07”\^\^xsd:date バージョン 1.4.0 as of
-“2015-08-11”\^\^xsd:date
-
--   本ガイドラインのバージョン番号は
-    [セマンティック・バージョニング](http://semver.org/lang/ja/) を採用
-    (2015-08-10)
-    -   メジャーバージョンは、これまで作成した RDF/Ontology
-        の大幅な更新が必要な非互換な改定を行った場合にインクリメント
-    -   マイナーバージョンは、新しく情報を追加した場合にインクリメント
-    -   パッチバージョンは、文言の改善など意味的に変更がない場合にインクリメント
-    -   「てにをは」や typo の修正については Wiki
-        なのでバージョン変更なしに書き換え
-
-2015-12-07 バージョン 1.5.0 文献情報の記述について提案を追記。（skwsm）
-
-2016-03-28 バージョン 1.6.0 複数のID定義の非推奨について追記。（skwsm）
-
-2016-10-21 バージョン 1.7.0
-スキーマ図を作成することについて追記。SPARQLサンプルを付与することを追記。（skwsm）
-
-2016-10-21 バージョン 1.7.1
-「クラスの定義を適切に行う」項目を、「オントロジーのクラスやプロパティの説明を適切に行う」に変更（定義を適切に行う、だと、様々なクラス制約等を定義しているように読めるので）。(skwsm)
-
-2017-04-13 バージョン 1.8.0 「2.2.9
-URIにはバージョンを含めない」を追記。（skwsm）
-
-2017-05-15 バージョン 1.9.0 「2.2.9
-文献情報へのリンク」。改変（プロパティに関するTo do を推奨へ）（skwsm）
-
 ## はじめに 〜 Linked Data構想
----------------------------
 
 [RDF](http://www.w3.org/TR/rdf11-concepts/)は、曖昧性が少なく、機械可読性の高いデータを記述する枠組みです。しかし、実際に記述したいデータをどのようにRDF化すれば、表現したい内容が記述できるのか、また、その後の利用の観点からより良いものになるのか、という指針は提供されていません。このことが、データベースをRDF化する際に、特に初心者にとって高いハードルとなっています。幸い、これまで [BioHackathon](http://biohackathon.org) や [SPARQLthon](http://wiki.lifesciencedb.jp/mw/SPARQLthon) などでも、様々な議論がなされ、知見も蓄積されてきました。そろそろこのコミュニティでデータをRDF化する際に指針となるようなガイドラインを作る時期にきたと思います。本ガイドラインが目指すのは、それを参照することで、RDF化作業の負担が減り、また他のデータと適切に統合して利用できるようなRDFを作成できるようにすることです。
 
 基本精神として、Tim Berners-Leeによる、 [Linked Data構想](http://www.w3.org/DesignIssues/LinkedData.html)
 に則ったデータ作成が推奨されます。Linked Data構想では、
 
-1.  Use URIs as names for things → モノやコトにURIを使って名前をつける
-2.  Use HTTP URIs so that people can look up those names. →
-    広く一般に普及しているソフトウェアでアクセスできる、http://
-    から始まるURIを名前に使用することでユーザがそれについて調べられるようにする（広く普及しているソフトウェアではアクセスできないURIもあるため）
-3.  When someone looks up a URI, provide useful information, using the
-    standards (RDF\*, SPARQL) →
-    URIにアクセスした時にRDFやSPARQLなどの標準に沿って有用な情報を提供する
-4.  Include links to other URIs. so that they can discover more things.
-    →
-    他のURIへのリンクを含めるようにすることで、さらなる情報を辿れるようにする
+>1.  Use URIs as names for things → モノやコトにURIを使って名前をつける
+>2.  Use HTTP URIs so that people can look up those names. →
+>    広く一般に普及しているソフトウェアでアクセスできる、http://
+>    から始まるURIを名前に使用することでユーザがそれについて調べられるようにする（広く普及しているソフトウェアではアクセスで>きないURIもあるため）
+>3.  When someone looks up a URI, provide useful information, using the
+>    standards (RDF\*, SPARQL) →
+>    URIにアクセスした時にRDFやSPARQLなどの標準に沿って有用な情報を提供する
+>4.  Include links to other URIs. so that they can discover more things.
+>    →
+>    他のURIへのリンクを含めるようにすることで、さらなる情報を辿れるようにする
 
 という4つの原則が提唱されています。
 
@@ -54,13 +24,13 @@ URIにはバージョンを含めない」を追記。（skwsm）
 Framework](https://ja.wikipedia.org/wiki/Resource_Description_Framework)の略称で、URIは[Uniform
 Resource Identifier](https://ja.wikipedia.org/wiki/Uniform_Resource_Identifier)の略称です。RDFは、ウェブにおいてURIで指し示される[リソース](https://ja.wikipedia.org/wiki/%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B9_(WWW))の情報を表現するための一つの枠組み(規格)であり、特定のファイル形式を指すものではありません。実際、RDFを用いて情報を記述する形式にはRDF/XML, N-Triples, Turtle, JSON-LDなど複数ありますが、[Turtle](http://www.w3.org/TR/turtle/)形式は機械だけでなく人から見ても可読性が高く、SPARQLクエリの表記方法と共通点が多いことから、本ガイドラインではTurtle形式に従った表記をします。
 
-## データベースコンテンツをRDF化する際のガイドライン
+## 1 データベースコンテンツをRDF化する際のガイドライン
 
 以下、これまで蓄積してきた知見から、データベースをRDF化する際に推奨される指針を挙げます。
 
-### URIを設計する際のガイドライン
+### 1.1 URIを設計する際のガイドライン
 
-#### 永続性の高いURIを利用する
+#### 1.1.1 永続性の高いURIを利用する
 
 永続性の高いURIを使うという指針は、Tim Berners-Lee
 による「[クールなURIは変わらない](http://www.w3.org/Provider/Style/URI)
@@ -84,7 +54,7 @@ Dataの原則2で、http://
 [purl.jp](http://purl.jp/docs/)
 サービスを提供しています。PURLサービスで転送を管理することにより、常にそのときアクセスできる最新のURIを指し示すことができます。
 
-#### リソースを示すURIはそれを識別するためのIDをURIの末尾に記述する
+#### 1.1.2 リソースを示すURIはそれを識別するためのIDをURIの末尾に記述する
 
 永続性の高いドメイン部分に続く、URIのパス部分については、モノやコトを表す記述対象のリソースを識別するIDがURIの最後に来るようにし、その直前にスラッシュ(/)を用いることが推奨されます。
 例えばUniProtではQ6GZX3というIDで識別されるタンパク質について
@@ -101,9 +71,18 @@ Dataの原則3で示される、「URIにアクセスした時にRDFやSPARQLな
 <http://biohackathon.org/resource/faldo#Position>
 のようにハッシュ(\#)が使用されています。
 
-### RDFを作成する際のガイドライン
+#### 1.1.3 URIにはバージョンを含めない
 
-#### URIリソースはオントロジーのクラスのインスタンスとして定義する
+バージョン番号が含まれているURI（https://www.ncbi.nlm.nih.gov/protein/NP_003024.1 等）を用いる場合、URIからバージョン番号を除いたURIの利用を推奨します。そうすることによって、オリジナルのURIのバージョンが変更されても、RDFは変更しなくてもすみます。最新のバージョンを知りたい場合は、togows.org
+を用いることで、最新バージョンを取得することができます。
+
+```
+http://togows.org/entry/ncbi-protein/145579718/version
+```
+
+### 1.2 RDFを作成する際のガイドライン
+
+#### 1.2.1 URIリソースはオントロジーのクラスのインスタンスとして定義する
 
 URIで示されるリソースが何を意味しているのか、ということを明確かつ簡潔に表現するのに、オントロジーのクラスが`rdf:type`で指定されていることは重要です。特に、主たるリソースには、オントロジーに基づいてクラスを指定することが推奨されます。
 
@@ -134,7 +113,7 @@ ex:111 rdf:type rdfs:Class # ← ex:111 はクラスでもあり
 ex:111 rdf:type ex:Myclass # ← インスタンスでもある、ことになる  
 ```
 
-#### URIリソースにラベルをつける
+#### 1.2.2 URIリソースにラベルをつける
 
 URIで示されるリソースが何なのか、ということを人間が容易に理解するためには、ラベルが`rdfs:label`により自然言語で記述されていることは有用です。特に、主たるリソースには簡潔なラベルを記述することが推奨されます。このことは、機械可読性を高めることとは関係ありませんが、人間可読性を高めるので、アプリケーションをつくる際や、SPARQL検索の結果を読みやすく表示する際に便利になります。
 
@@ -158,7 +137,7 @@ chebi:CHEBI_17234 rdfs:label "D-Glucose"@en ;
                   skos:prefLabel "D-Glucose"@en .  
 ```
 
-#### URIリソースにIDラベルをつける
+#### 1.2.3 URIリソースにIDラベルをつける
 
 URIはそれ自体がグローバルなIDとして機能しています。しかし、URIは記号的ですし文字列として長いので、SPARQL結果を表示する際に人間が見るのには向いていません。URIの末尾にデータベース固有の(ローカルな)IDが含まれているような場合は、URIの最後の/以下を切り出すことで文字列としてのIDを得ることができますが、このためにはSPARQLで文字列処理を適用するなど余計な手間が発生します。そこで、主なリソースのID文字列については、`dcterms:identifier`で記述することが推奨されます。
 
@@ -182,7 +161,7 @@ pdb:2RH1 dcterms:identifier "2RH1" .
 pdb:2RH1 skos:altLabel "2rh1" .  
 ```
 
-#### 他のデータセットへのリンクをつける
+#### 1.2.4 他のデータセットへのリンクをつける
 
 RDFでは、Linked Dataの原則4で示されるように、外部のリソースに対する参照リンクを貼ることで、データのウェブ(Linked Data)が実現されます。クロスリファレンス先がデータベースエントリの場合は、参照するDBエントリーが実際に閲覧できるURLへリンクを張ることが一般的です。これをオリジナルのサイトを尊重するという意味からpolite URLと呼んでいます。しかし、オリジナルのURLを利用することの問題点として、
 
@@ -207,7 +186,7 @@ ex:111 rdfs:seeAlso <http://identifiers.org/pfam/PF01590> .
 
 のようにpolite URLとIdentifiers.orgのURIの両方に参照リンクを貼ることで、外部のリソースと繋がりやすいRDFを作成することができます。
 
-#### 文献情報へのリンクをつける
+#### 1.2.5 文献情報へのリンクをつける
 
 記述している内容の根拠となる文献情報が分かっている場合には、積極的に文献情報へのリンクを付けて下さい。文献情報は、可能な限り[PubMed](http://pubmed.org/)または[DOI](http://doi.org/)のIDを使ってリンクしてください。これらのIDをURI化する際は下記のprefixを利用することを推奨します。
 
@@ -244,7 +223,7 @@ PubMed IDや DOI IDが利用できない場合は、学術文献であれば [Bi
 ] .  
 ```
 
-#### データにメタ情報をつける
+#### 1.2.6 データにメタ情報をつける
 
 データをセマンティック・ウェブ化する利点の一つは、メタデータを必要なだけ付与できることです。RDFのデータセットにメタデータを付与することで、作成された日、作成した人、データソース、データのカテゴリ、ライセンス等を明示することができます。
 RDFデータセットに関するメタデータを記述するための語彙として[VoID](http://www.w3.org/TR/void/)があります。
@@ -256,7 +235,7 @@ RDFで来歴情報を記述するための語彙は、いくつか提案され�
 
 また、アノテーションなどで、その根拠のレベルを記述するために、Evidence Code Ontology を利用することもできます。
 
-#### 画像へのリンク
+#### 1.2.7 画像へのリンク
 
 -   主語URIが意味する実体を表す画像へのリンクを張る際には、[foaf:depiction](http://xmlns.com/foaf/spec/#term_depiction)
     を利用する。
@@ -270,7 +249,7 @@ an-assay-db:12345 foaf:depiction an-assay-db-image:12345.jpg .
 an-assay-db-image:12345.jpg foaf:depicts an-assay-db:12345 .
 ```
 
-#### URI、空白ノード、リテラルの使い分けを適切に行う
+#### 1.2.8 URI、空白ノード、リテラルの使い分けを適切に行う
 
 RDFはURI、空白ノード、リテラルの組み合わせで構成されますが、これからRDF化を行うデータをどのようにこれらに当てはめると、より有用なRDFになるか検討します。RDFの最小単位は主語、述語、目的語の三つ組み（RDFトリプル）であり、
 
@@ -289,22 +268,13 @@ RDFはURI、空白ノード、リテラルの組み合わせで構成されま�
 
 一方、文字列や観測値などの数値データは識別子(IDのこと)ではなく値そのものを表しますので、リテラルで表現します。この際、値に対して単位などデータの型を付けることで、より明確に値の意味(データのセマンティクス)を記述することができます。文字列リテラルでは、言語タグを使うことにより“protein”@enや“タンパク質”@jaなど英語や日本語といった言語を明示することができますし、数値リテラルの123が整数であることを示すには`"123"^^xsd:integer`のようにデータ型URIをつけることができます(ここで`xsd:integer`は<http://www.w3.org/2001/XMLSchema#integer>の[QName](https://en.wikipedia.org/wiki/QName)表記です)。さらに、数値の単位などを指定したリテラルの記述方法については、本ガイドラインの「単位のついた値の記述方法」セクションを参考にしてください。
 
-#### URIにはバージョンを含めない
+### 1.3 オントロジーを利用・構築する際のガイドライン
 
-バージョン番号が含まれているURI（https://www.ncbi.nlm.nih.gov/protein/NP_003024.1 等）を用いる場合、URIからバージョン番号を除いたURIの利用を推奨します。そうすることによって、オリジナルのURIのバージョンが変更されても、RDFは変更しなくてもすみます。最新のバージョンを知りたい場合は、togows.org
-を用いることで、最新バージョンを取得することができます。
-
-```
-http://togows.org/entry/ncbi-protein/145579718/version
-```
-
-### オントロジーを利用・構築する際のガイドライン
-
-#### 既存のオントロジーを再利用する
+#### 1.3.1 既存のオントロジーを再利用する
 
 情報をRDFとして記述する場合、主語のクラスや述語のプロパティ等に、どのオントロジーを利用すればいいのかということは、しばしば自明ではなく、難しい問題です。少なくとも、次にあげるような広く利用されているオントロジーや語彙に適当なものがある場合はそれを利用することが推奨されます。
 
-* 一般的な語彙の一覧
+##### 一般的な語彙の一覧
 
 | 語彙 | 名前空間 | 参考リンク |
 |-----|-----|--------------|
@@ -336,7 +306,7 @@ http://togows.org/entry/ncbi-protein/145579718/version
 上記のように一般的な概念を扱ったオントロジーや語彙以外に、生命科学情報を記述する際に、利用しやすいオントロジーもあります。
 特に[BioPortal](http://bioportal.bioontology.org/)では、生命科学における適切なオントロジーや語彙を検索することができます。
 
-* 生命科学情報に関するドメインオントロジー
+##### 生命科学情報に関するドメインオントロジー
 
 
   | 略称 | オントロジー名 | 名前空間 | 参考リンク |
@@ -370,7 +340,7 @@ http://togows.org/entry/ncbi-protein/145579718/version
 
 なお、SPARQLやTurtleで既存のオントロジーや語彙のURIを利用する際には、しばしば名前空間を短縮形で表記します。例えば、上記の`rdf:type`というURIは`<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>`の短縮表記です。この短縮形はTurtleのprefixed nameという表記方法に従って書かれており、一つのデータセット内において短縮名と実際の表記の対応が矛盾無く宣言されていればどのような短縮名を利用しても問題ないのですが、主要なオントロジーに対しては広く使われている短縮名があり、それを使うことで人間にとっての可読性が上がります。一般的な短縮名を探すためのサービスとして[prefix.cc](http://prefix.cc/)を利用することができます。
 
-#### 新規にオントロジーを構築する
+#### 1.3.2 新規にオントロジーを構築する
 
 データや知識をRDF化する際に、しばしば、オントロジーが必要になることがあります。典型的な例は、
 
@@ -387,7 +357,7 @@ http://togows.org/entry/ncbi-protein/145579718/version
 -   [TopBraid](http://www.topquadrant.com/tools/modeling-topbraid-composer-standard-edition/)
     商用のオントロジーエディタ
 
-#### プロパティにdomainとrangeを定義する
+#### 1.3.3 プロパティにdomainとrangeを定義する
 
 プロパティ(RDFの述語; predicate)には、`rdfs:domain`および`rdfs:range`を定義することができます。これによりプロパティの意味がより明示的になります。
 
@@ -415,7 +385,7 @@ uniprot:P51028 ex:fugahoge go:2000044 .
 
 オントロジーにドメインとレンジが定義されることで、このプロパティ`core:classifiedWIth`は`core:Protein`タイプ以外のリソースを主語にとらないこと、`core:Concept`以外の値を持つことができないことを、機械が情報処理に利用することができるようになります。
 
-#### オントロジーのクラスやプロパティの説明を適切に行う
+#### 1.3.4 オントロジーのクラスやプロパティの説明を適切に行う
 
 オントロジーのクラスを新たに定義する場合、利用者が、そのクラスが表す概念が何なのか理解できるように、適切な説明をつけることは重要です。
 プロパティとしては、`skos:definition`や`rdfs:comment`等を用いて、簡潔でいいので明確に記述して下さい。
@@ -425,9 +395,9 @@ uniprot:P51028 ex:fugahoge go:2000044 .
 core:Active_Site_Annotation rdfs:comment "Amino acid(s) involved in the activity of an enzyme."^^xsd:string;  
 ```
 
-### RDFを提供する際のガイドライン
+### 1.4 RDFを提供する際のガイドライン
 
-#### 定期的なリリースとバージョン情報
+#### 1.4.1 定期的なリリースとバージョン情報
 
 現状、多くのデータベースは、RDF化する場合、すでに別の形式（リレーショナル・データベース等）で構築・提供しているデータベースから変換していると思います。こういった場合、公開サービスとして提供しているデータと、RDF化したデータとの間で、内容についての同期の問題が発生します。できるだけ、プライマリに提供しているデータと、RDF化したデータとの間との違いが大きくならないように、定期的なRDF化が望まれます。そのために、既存の形式からRDF化への変換はできるだけ自動化するようにし、その過程からは、マニュアル作業が必要な工程をできるだけ排除して下さい。RDF化の過程に大量のマニュアル作業が発生すると、定期的なRDF化は著しく困難になります。マニュアル作業（アノテーション、オントロジーマッピング等）はプライマリのデータベース構築作業の方に含めるようにして下さい。もちろん、プライマリなデータベースのフォーマットがRDFの場合はこの限りではありません。
 
@@ -437,7 +407,7 @@ core:Active_Site_Annotation rdfs:comment "Amino acid(s) involved in the activi
 -   [pav:version](http://purl.org/pav/version)
 -   [owl:versionInfo](http://www.w3.org/2002/07/owl#versionInfo)
 
-#### ライセンス情報をつける
+#### 1.4.2 ライセンス情報をつける
 
 ライセンスが明示的に書かれていることで、ユーザが安心してRDFデータを利用することができます。データの利用しやすさの観点からは、[クリエイティブ・コモンズ](http://creativecommons.jp/)の適切な[ライセンス](http://creativecommons.jp/licenses/)を利用すること等が推奨されます。また、オントロジーについてはそもそも著作物であるか否かで議論の余地があるところですが、著作物である場合を想定し、そして、一部を再利用することの容易性から、[CC0](http://sciencecommons.org/resources/readingroom/ontology-copyright-licensing-considerations/)が良いと言われています。
 
@@ -449,7 +419,7 @@ core:Active_Site_Annotation rdfs:comment "Amino acid(s) involved in the activi
 
 To be fixed: 独自ライセンスの場合にどのように記載したら良いかを追記する
 
-#### スキーマ図を提供する
+#### 1.4.3 スキーマ図を提供する
 
 RDFは機械可読性を高めることを目的とした仕組みであることから、必然的に人間が読むには適していません。しかし、現状では、RDFデータにSPARQLにより問い合わせを行う際などには、そのデータの構造を知っている必要があります。その際に、RDFデータのスキーマ図があることは、データ構造を理解する際に大きな助けになります。
 
@@ -457,12 +427,12 @@ RDFは機械可読性を高めることを目的とした仕組みであるこ�
     （ファイルをダウンロードした後、[draw io](http://draw.io/)
     で「File＞Open from＞Device…」からファイルを選択する）
 
-#### SPARQLサンプルを提供する
+#### 1.4.4 SPARQLサンプルを提供する
 
 Provide a set of representative queries on how to use your data in
 natural language along with the corresponding SPARQL query
 
-#### SPARQLエンドポイントを公開する際はCORS対策を行う
+#### 1.4.5 SPARQLエンドポイントを公開する際はCORS対策を行う
 
 SPARQLエンドポイントに対する検索をウェブアプリケーションからJavaScriptで行うケースを想定して、SPARQLエンドポイントとなる公開ウェブサーバではどこからでもアクセス可能となるように　、[CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 (Cross Origin Resource Sharing)対策をすることが強く推奨されます。
@@ -494,23 +464,19 @@ server {
 #### 生命科学のLinked Dataを公開する際の10のルール
 
 [BioHackathon 2014](http://2014.biohackathon.org/) でも、Linked Data
-公開のルールについて議論されました( [10 simple rules for publishing
-Linked Data for the Life
-Sciences](https://github.com/dbcls/bh14/wiki/Ten-simple-rules-for-publishing-Linked-Data-for-the-Life-Sciences)
-)。この議論は論文化にむけて取りまとめが進められていますが、現状ではまだ完成しておらず追記可能です。
+公開のルールについて議論されました( [10 simple rules for publishing Linked Data for the Life Sciences](https://github.com/dbcls/bh14/wiki/Ten-simple-rules-for-publishing-Linked-Data-for-the-Life-Sciences))。この議論は論文化にむけて取りまとめが進められていますが、現状ではまだ完成しておらず追記可能です。
 
-###生命科学で利用しやすいRDFモデル
+### 1.5 生命科学で利用しやすいRDFモデル
 
 以下では、データベースRDF化ガイドラインの補稿として生命科学データベースのRDF化におけるベストプラクティスを蓄積・共有します。
 
-#### 測定項目および測定値の記述方法
+#### 1.5.1 測定項目および測定値の記述方法
 
 ##### 単位のついた値の記述方法
 
 -   ブランクノードを利用する方法 （推奨）
 
-W3C のRDF入門でも書かれているように( [構造化された値:
-rdf:valueに関する詳細](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rdf/rdf-primer.html#rdfvalue))
+W3C のRDF入門でも書かれているように( [構造化された値: rdf:valueに関する詳細](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rdf/rdf-primer.html#rdfvalue))
 、単位のついた値を記述する場合、次に示すように、ブランクノードを利用し値と単位を指定する方法があります。
 
 ```
@@ -520,30 +486,20 @@ exproduct:item10245 exterms:weight [
 ] .  
 ```
 
-上の例は、[構造化された値:
-rdf:valueに関する詳細](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rdf/rdf-primer.html#rdfvalue)
-から抜粋したものです。ただ、ここでは、ブランクノードを指すプロパティ（exterms:weight）
-や 単位を指すプロパティ（exterms:units
-）および単位を表すクラス（exunits:kilograms）として、具体的に何を使えばよいのか書かれていません。
+上の例は、[構造化された値:　rdf:valueに関する詳細](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rdf/rdf-primer.html#rdfvalue)
+から抜粋したものです。ただ、ここでは、ブランクノードを指すプロパティ（exterms:weight）や 単位を指すプロパティ（exterms:units）および単位を表すクラス（exunits:kilograms）として、具体的に何を使えばよいのか書かれていません。
 
-単位としては、Units of Measurement Ontology (UO:
-[BioPortal](http://bioportal.bioontology.org/ontologies/UO),
-[Home](https://code.google.com/p/unit-ontology/)) または Quantities,
-Units, Dimensions and Data Types Ontologies (QUDT:
-[BioPortal](http://bioportal.bioontology.org/ontologies/QUDT),
+単位としては、Units of Measurement Ontology (UO:　[BioPortal](http://bioportal.bioontology.org/ontologies/UO),　[Home](https://code.google.com/p/unit-ontology/))　の利用を推奨します。UOに適当な単位が見つからない場合には、Quantities, Units, Dimensions and Data Types Ontologies (QUDT: [BioPortal](http://bioportal.bioontology.org/ontologies/QUDT),
 [Home](http://qudt.org/)) の利用を推奨します。
 
-単位を指すプロパティとしては、[qudt:unit](http://www.linkedmodel.org/doc/2015/DOC_schema-qudt-v2.0#qudt_unit)
-(URI は、&lt;<http://qudt.org/schema/qudt#unit>&gt; )や
-[sio:has-unit](http://semanticscience.org/resource/has-unit.rdf)
-(sio:SIO\_000221) が利用できます。
+単位を指すプロパティとしては、[`sio:SIO_000221`](http://semanticscience.org/resource/SIO_000221)
+(sio:has-unit) の利用を推奨します。
 
-ブランクノードを指すプロパティとしては、[sio:has-measurement-value](http://semanticscience.org/resource/has-unit.rdf)
-(sio:SIO\_000216) が利用できます。ただ、sio:has-measurement-value
-のような一般的なプロパティを使うと、特定の測定値に絞って検索することができなくなります。その場合、以下のように、ブランクノードの型に、何の値を測定したものか、タイプ指定をすることで解決することができます。
+ブランクノードを指すプロパティとしては、[`sio:SIO_000216`](http://semanticscience.org/resource/has-unit.rdf)
+(sio:has-measurement-value) の利用を推奨します。`sio:has-measurement-value`
+では、特定の測定値に絞って検索することができませんが、そこことは、以下のように、ブランクノードを適切に定義することで（ブランクノードを、適切なオントロジークラスのインスタンスとすることで）解決できます。
 
 ```
-例）  
 ex:m1 sio:SIO_000216 [  
   rdf:type       cmo:CMO_0000209 ;  
   rdf:value      21.5 ;  
@@ -556,46 +512,19 @@ ex:m1 sio:SIO_000216 [
 # SIO_000221 is has-unit  
 ```
 
-```
-例）  
-ex:m1 sio:SIO_000216 [  
-  rdf:type cmo:CMO_0000209 ;  
-  sio:SIO_000300 21.5 ;  
-  sio:SIO_000221 uo:UO_0000309  
-] .  
-
-# CMO_0000209: Blood fibrinogen level defined by [Clinical Measurement Ontology](http://www.ontobee.org/browser/index.php?o=CMO)
-# UO_0000309: Milligram per square meter defined by [Units of Measurement Onotlogy](http://bioportal.bioontology.org/ontologies/UO) .  
-# SIO_000216 is `“`has`` ``measurement`` ``value`”\  
-# SIO_000221 is `“`has`` ``unit`”  
-```
-
 -   単位の型指定をつかう方法
 
 単位を表すURIを、値の型として指定することもできます。
 
 ```
-例）`  
 ex:e1 sio:SIO_000216 ex:m1 .  
 ex:m1 rdf:type cmo:CMO_0000209 ;  
       sio:SIO_000300 21.5^^obo:UO_0000309 .  
 ```
 
-#### 画像へのリンク
+#### 1.5.2 遺伝子やタンパク質配列座標情報の記述方法
 
--   主語URIが意味する実体を表す画像へのリンクを張る際には、[foaf:depiction](http://xmlns.com/foaf/spec/#term_depiction)
-    を利用する。
-
-```
-an-assay-db:12345 foaf:depiction an-assay-db-image:12345.jpg .
-```
-
--   逆に、画像ファイルのURIが主語で、その画像に描かれているもののリソースURIが目的語の場合、[foaf:depicts](http://xmlns.com/foaf/spec/#term_depicts)
-    を利用する。
-
-```
-an-assay-db-image:12345.jpg foaf:depicts an-assay-db:12345 .
-```
+遺伝子やタンパク質等の配列の座標情報を記述する場合、[FALDO](http://biohackathon.org/resource/faldo): Feature Annotation Location Description Ontology [GitHub](https://github.com/JervenBolleman/FALDO)の利用を推奨します。FALDOは、UniProt、Ensembl、DDBJ等のRDFで利用されています。使い方は、[README](https://github.com/JervenBolleman/FALDO/blob/master/README.md) や、[FALDO論文](https://jbiomedsem.biomedcentral.com/articles/10.1186/s13326-016-0067-z)に記載されていますので、それを参考にして下さい
 
 * * *
 
@@ -633,3 +562,34 @@ webをグローバルなデータ空間にする仕組み](http://ci.nii.ac.jp/n
 #### RDF化ガイドラインに対するコメントを自由に書き込むページ
 
 -   [RDF化ガイドラインへのコメント](http://wiki.lifesciencedb.jp/mw/RDFizingDatabaseGuidelineComments)
+
+#### History
+
+バージョン 1.5.0 as of “2015-12-07”\^\^xsd:date バージョン 1.4.0 as of
+“2015-08-11”\^\^xsd:date
+
+-   本ガイドラインのバージョン番号は
+    [セマンティック・バージョニング](http://semver.org/lang/ja/) を採用
+    (2015-08-10)
+    -   メジャーバージョンは、これまで作成した RDF/Ontology
+        の大幅な更新が必要な非互換な改定を行った場合にインクリメント
+    -   マイナーバージョンは、新しく情報を追加した場合にインクリメント
+    -   パッチバージョンは、文言の改善など意味的に変更がない場合にインクリメント
+    -   「てにをは」や typo の修正については Wiki
+        なのでバージョン変更なしに書き換え
+
+2015-12-07 バージョン 1.5.0 文献情報の記述について提案を追記。（skwsm）
+
+2016-03-28 バージョン 1.6.0 複数のID定義の非推奨について追記。（skwsm）
+
+2016-10-21 バージョン 1.7.0
+スキーマ図を作成することについて追記。SPARQLサンプルを付与することを追記。（skwsm）
+
+2016-10-21 バージョン 1.7.1
+「クラスの定義を適切に行う」項目を、「オントロジーのクラスやプロパティの説明を適切に行う」に変更（定義を適切に行う、だと、様々なクラス制約等を定義しているように読めるので）。(skwsm)
+
+2017-04-13 バージョン 1.8.0 「2.2.9
+URIにはバージョンを含めない」を追記。（skwsm）
+
+2017-05-15 バージョン 1.9.0 「2.2.9
+文献情報へのリンク」。改変（プロパティに関するTo do を推奨へ）（skwsm）
