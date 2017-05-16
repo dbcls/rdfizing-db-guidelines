@@ -264,15 +264,15 @@ RDFはURI、空白ノード、リテラルの組み合わせで構成されま�
 
 | 語彙 | 名前空間 | 参考リンク |
 |-----|-----|--------------|
-| RDF 1.0 | http://www.w3.org/1999/02/22-rdf-syntax-ns# | [概念および抽象構文 [英語](http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/)] [[日本語](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rdf/rdf-concepts.html)], [RDF入門 [英語](http://www.w3.org/TR/2004/REC-rdf-primer-20040210/)] [[日本語](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rdf/rdf-primer.html)], [RDF/XML構文仕様 [英語](http://www.w3.org/TR/2004/REC-rdf-syntax-grammar-20040210/)] [[日本語](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rdf/rdf-syntax-grammar.html)] |
-|RDF 1.1 | http://www.w3.org/1999/02/22-rdf-syntax-ns# | [概念および抽象構文 [英語](http://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/)], [RDF入門 [英語](http://www.w3.org/TR/2014/NOTE-rdf11-primer-20140225/)], [RDF/XML構文仕様 [英語](http://www.w3.org/TR/2014/REC-rdf-syntax-grammar-20140225/)], [turtle構文仕様 [英語](http://www.w3.org/TR/2014/REC-turtle-20140225/)] |
-| RDFS 1.0 | http://www.w3.org/2000/01/rdf-schema# | [仕様 [英語](http://www.w3.org/TR/2004/REC-rdf-schema-20040210/)] [[日本語](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rdf/rdf-schema.html)] |
-| RDFS 1.1 | http://www.w3.org/2000/01/rdf-schema# | [仕様 [英語](http://www.w3.org/TR/2014/REC-rdf-schema-20140225/)\] |
-| OWL 1 | http://www.w3.org/2002/07/owl | [概要 [英語](http://www.w3.org/TR/2004/REC-owl-features-20040210/)] [[日本語](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rec-owl-features-20040210.html)] |
-| OWL 2 | http://www.w3.org/2002/07/owl | [概要 [英語]](http://www.w3.org/TR/2012/REC-owl2-overview-20121211/)] |
-| DC | http://purl.org/dc/elements/1.1/ | [仕様 [英語](http://dublincore.org/documents/dces/)] |
-| DC terms | http://purl.org/dc/terms/ | [仕様 [英語](http://dublincore.org/documents/dcmi-terms/)\] |
-| SKOS | http://www.w3.org/2004/02/skos/core | [概要 [英語](http://www.w3.org/TR/skos-reference/)] [[日本語](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/skos/REC-skos-reference-20090818.html)], [SKOS入門 [英語](http://www.w3.org/TR/2009/NOTE-skos-primer-20090818/)] [[日本語](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/skos/note-skos-primer-20090818.html)\] |
+| RDF 1.0 | http://www.w3.org/1999/02/22-rdf-syntax-ns# | [概念および抽象構文 [英語](http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/) [日本語](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rdf/rdf-concepts.html)], [RDF入門 [英語](http://www.w3.org/TR/2004/REC-rdf-primer-20040210/) [日本語](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rdf/rdf-primer.html)], [RDF/XML構文仕様 [英語](http://www.w3.org/TR/2004/REC-rdf-syntax-grammar-20040210/) [日本語](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rdf/rdf-syntax-grammar.html)] |
+|RDF 1.1 | http://www.w3.org/1999/02/22-rdf-syntax-ns# | [概念および抽象構文 [英語](http://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/)], [RDF入門 [英語](http://www.w3.org/TR/2014/NOTE-rdf11-primer-20140225/)], [RDF/XML構文仕様 [英語](http://www.w3.org/TR/2014/REC-rdf-syntax-grammar-20140225/)], [Turtle構文仕様 [英語](http://www.w3.org/TR/2014/REC-turtle-20140225/)] |
+| RDFS 1.0 | http://www.w3.org/2000/01/rdf-schema# | [仕様 [英語](http://www.w3.org/TR/2004/REC-rdf-schema-20040210/) [日本語](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rdf/rdf-schema.html)] |
+| RDFS 1.1 | http://www.w3.org/2000/01/rdf-schema# | [仕様 [英語](http://www.w3.org/TR/2014/REC-rdf-schema-20140225/)] |
+| OWL 1 | http://www.w3.org/2002/07/owl | [概要 [英語](http://www.w3.org/TR/2004/REC-owl-features-20040210/) [日本語](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rec-owl-features-20040210.html)] |
+| OWL 2 | http://www.w3.org/2002/07/owl | [概要 [英語](http://www.w3.org/TR/2012/REC-owl2-overview-20121211/)] |
+| DC | http://purl.org/dc/elements/1.1/ | [仕様 [英語](http://dublincore.org/documents/dces/) |
+| DC terms | http://purl.org/dc/terms/ | [仕様 [英語](http://dublincore.org/documents/dcmi-terms/)] |
+| SKOS | http://www.w3.org/2004/02/skos/core | [概要 [英語](http://www.w3.org/TR/skos-reference/) [日本語](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/skos/REC-skos-reference-20090818.html)], [SKOS入門 [英語](http://www.w3.org/TR/2009/NOTE-skos-primer-20090818/) [日本語](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/skos/note-skos-primer-20090818.html)] |
 | FOAF | http://xmlns.com/foaf/0.1/ | [仕様 [英語](http://xmlns.com/foaf/spec/)] |
 | VoID | http://rdfs.org/ns/void# |[仕様 [英語](http://www.w3.org/TR/void/)], [概要 [英語](http://semanticweb.org/wiki/VoID)] |
 | UO | http://purl.obolibrary.org/obo/ | [Home](http://code.google.com/p/unit-ontology/), [BioPortal](http://bioportal.bioontology.org/ontologies/UO) |
@@ -280,8 +280,8 @@ RDFはURI、空白ノード、リテラルの組み合わせで構成されま�
 | PROV-O | http://www.w3.org/ns/prov# | [仕様 [英語](http://www.w3.org/TR/prov-o/)], [Home](http://qudt.org/), [BioPortal](http://bioportal.bioontology.org/ontologies/PROVO) |
 | PAV | http://purl.org/pav/ |[仕様 [英語](http://www.essepuntato.it/lode/http://purl.org/pav/2.0/)], [BioPortal](http://bioportal.bioontology.org/ontologies/PAV) |
 | XSD | http://www.w3.org/2001/XMLSchema# ||
-| DCAT | http://www.w3.org/ns/dcat# | [仕様 [英語](https://www.w3.org/TR/vocab-dcat/)], [[日本語](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rdf/REC-vocab-dcat-20140116.html)] |
-| BIBO | http://purl.org/ontology/bibo/ | [Home](http://bibliontology.com/),[[GitHub](https://github.com/structureddynamics/Bibliographic-Ontology-BIBO)] |
+| DCAT | http://www.w3.org/ns/dcat# | [仕様 [英語](https://www.w3.org/TR/vocab-dcat/), [日本語](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rdf/REC-vocab-dcat-20140116.html)] |
+| BIBO | http://purl.org/ontology/bibo/ | [Home](http://bibliontology.com/),[GitHub](https://github.com/structureddynamics/Bibliographic-Ontology-BIBO) |
 | Event |<http://purl.org/NET/c4dm/event.owl#> | [Home](http://motools.sourceforge.net/event/event.html) |
 | GEO | http://www.w3.org/2003/01/geo/wgs84_pos# | [Home](https://www.w3.org/2003/01/geo/)|
 
@@ -304,7 +304,7 @@ RDFはURI、空白ノード、リテラルの組み合わせで構成されま�
   |PO | Plant Ontology | http://purl.obolibrary.org/obo/ | [Home](http://plantontology.org/), [BioPortal](http://bioportal.bioontology.org/ontologies/PO) |
   |Taxonomy | Taxnomy Ontology | http://ddbj.nig.ac.jp/ontologies/taxonomy/ | [BioPortal](http://bioportal.bioontology.org/ontologies/NCBITAXON), [DDBJ](http://tga.nig.ac.jp/ontologies/) |
   |Nucleotide | INSDC Nucleotide Sequence Entry Ontology | http://ddbj.nig.ac.jp/ontologies/nucleotide/ | [DDBJ](http://tga.nig.ac.jp/ontologies/) |
-  |MeSH | Medical Subject Headings |                            [BioPortal](http://bioportal.bioontology.org/ontologies/MESH) |
+  |MeSH | Medical Subject Headings | |           [BioPortal](http://bioportal.bioontology.org/ontologies/MESH) |
   |CL | Cell Ontology | http://purl.obolibrary.org/obo/ |  [BioPortal](http://bioportal.bioontology.org/ontologies/CL) |
   |FMA | Foundational Model of Anatomy | http://purl.org/sig/ont/fma/ |                   [Home](http://sig.biostr.washington.edu/projects/fm/), [BioPortal](http://bioportal.bioontology.org/ontologies/FMA) |
   |UBERON | Uber Anatomy Ontology | http://purl.obolibrary.org/obo/ | [Home](http://uberon.org), [BioPortal](http://bioportal.bioontology.org/ontologies/UBERON) |
@@ -312,7 +312,7 @@ RDFはURI、空白ノード、リテラルの組み合わせで構成されま�
   |SIO | Semanticscience Integrated Ontology | http://semanticscience.org/resource/ |      [Home](http://semanticscience.org/), [BioPortal](http://bioportal.bioontology.org/ontologies/SIO) |
   |EFO | Experimental Factor Ontology | http://www.ebi.ac.uk/efo/ | [Home](http://www.ebi.ac.uk/efo), [BioPortal](http://bioportal.bioontology.org/ontologies/EFO) |
   |ECO | Evidence Ontology | http://purl.obolibrary.org/obo |               [Home](http://code.google.com/p/evidenceontology/), [BioPortal](http://bioportal.bioontology.org/ontologies/ECO) |
-  |EDAM | EDAM bioinformatics operations, data types, formats, identifiers and topics  | <http://edamontology.org/>                         [Home](http://edamontology.org/), [BioPortal](http://bioportal.bioontology.org/ontologies/EDAM)
+  |EDAM | EDAM bioinformatics operations, data types, formats, identifiers and topics  | <http://edamontology.org/> | [Home](http://edamontology.org/), [BioPortal](http://bioportal.bioontology.org/ontologies/EDAM) |
   |CMO | Clinical Measurement Ontology | http://purl.obolibrary.org/obo/ |                   [Home](http://phenoonto.sourceforge.net/), [BioPortal](http://bioportal.bioontology.org/ontologies/CMO) |
   | MMO | Measurement Method Ontology | http://purl.obolibrary.org/obo/ | [Home](http://phenoonto.sourceforge.net/), [BioPortal](http://purl.bioontology.org/ontology/MMO) |
   | XCO | Experimental Conditions Ontology | http://purl.obolibrary.org/obo/ |    [Home](http://phenoonto.sourceforge.net/), [BioPortal](http://bioportal.bioontology.org/ontologies/XCO) |
