@@ -1,1 +1,1 @@
-# rdfizing-db-guidelines
+# DBCLS RDFizing DB guidelines
