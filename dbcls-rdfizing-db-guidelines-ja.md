@@ -58,9 +58,10 @@ Dataの原則2で、http://
 
 なお、オントロジーのURIでは、そのオントロジーを構成する概念を示すIDごとに個別のページを作る場合は、上記と同じようにIDの直前にスラッシュ(/)を、オントロジー全体が１つのページで提供される場合は、IDの直前をスラッシュの代わりにハッシュ(\#)としておくのが良いでしょう。例として、UniProtのオントロジー `http://purl.uniprot.org/core/` ではProteinなどの概念が個別のページで提供されているため、`http://purl.uniprot.org/core/Protein` のようにスラッシュ(/)が使用されています。一方、配列位置情報のオントロジー[FALDO](http://biohackathon.org/resource/faldo) では、Positionなどの概念が同じページで提供されているため、URIフラグメントの記法を用いて`http://biohackathon.org/resource/faldo#Position`のようにハッシュ(\#)が使用されています。
 
-#### 1.1.3 URIにはバージョンを含めない
+#### 1.1.3 バージョン情報を含むIDの扱い
 
-バージョン番号が含まれているURI（https://www.ncbi.nlm.nih.gov/protein/NP_003024.1 等）を用いる場合、URIからバージョン番号を除いたURIの利用を推奨します。そうすることによって、オリジナルのURIのバージョンが変更されても、RDFは変更しなくてもすみます。最新のバージョンを知りたい場合は、[`TogoWS`](http://togows.org) を利用することで、対応しているデータベースに関しては、次のような方法で、各データベースの最新バージョンを取得することができます。
+NCBI Gene や NCBI Protein等では、バージョン番号を含むIDと含まないIDが提供されています（例: https://www.ncbi.nlm.nih.gov/protein/NP_003024.1 と https://www.ncbi.nlm.nih.gov/protein/NP_003024 ）。このようなIDを利用する場合、どちらのIDを利用するべきか、ということが問題になります。他のデータセットとのリンクを重視する場合は、規則として、バージョン番号を含まないIDを利用することにした方が、データセット間のリンクは維持されやすいでしょう。一方で、何らかの対象について、その特定のバージョンに関する情報を記述した場合であれば、バージョン番号を含むIDを利用するべきです。すなわち、状況に応じて、より適切なIDを利用する必要があります。ただし、データセット間のリンクを安定して維持するという観点からは、バージョン番号付きのIDを利用する場合であっても、バージョン番号のないIDへのリンクも提供する方が望ましいといえます。
+最新のバージョンを知りたい場合は、[`TogoWS`](http://togows.org) を利用することで、対応しているデータベースに関しては、次のような方法で、各データベースの最新バージョンを取得することができます。
 
 ```
 http://togows.org/entry/ncbi-protein/145579718/version
@@ -281,7 +282,7 @@ RDFはURI、空白ノード、リテラルの組み合わせで構成されま�
 | PAV | http://purl.org/pav/ |[仕様 [英語](http://www.essepuntato.it/lode/http://purl.org/pav/2.0/)], [BioPortal](http://bioportal.bioontology.org/ontologies/PAV) |
 | XSD | http://www.w3.org/2001/XMLSchema# ||
 | DCAT | http://www.w3.org/ns/dcat# | [仕様 [英語](https://www.w3.org/TR/vocab-dcat/), [日本語](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rdf/REC-vocab-dcat-20140116.html)] |
-| BIBO | http://purl.org/ontology/bibo/ | [Home](http://bibliontology.com/),[GitHub](https://github.com/structureddynamics/Bibliographic-Ontology-BIBO) |
+| BIBO | http://purl.org/ontology/bibo/ | [Home](http://bibliontology.com/), [GitHub](https://github.com/structureddynamics/Bibliographic-Ontology-BIBO) |
 | Event |<http://purl.org/NET/c4dm/event.owl#> | [Home](http://motools.sourceforge.net/event/event.html) |
 | GEO | http://www.w3.org/2003/01/geo/wgs84_pos# | [Home](https://www.w3.org/2003/01/geo/)|
 
