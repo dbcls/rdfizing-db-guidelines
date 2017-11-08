@@ -173,6 +173,26 @@ ex:111 rdfs:seeAlso <http://identifiers.org/pfam/PF01590> .
 
 のようにpolite URLとIdentifiers.orgのURIの両方に参照リンクを貼ることで、外部のリソースと繋がりやすいRDFを作成することができます。
 
+NBDC RDF portalでは、RDFが公開されているデータベースについては、そのRDFで利用されているURIと、Identifiers.orgのURI（利用できる場合）の両方に対して、リンクすることを推奨しています。Identfiers.orgのURIについては、そのURIが所属するデータベースを表すクラスのインスタンスとなるように、NBDC RDF portal 側でトリプルを生成する予定です（2017.11現在）。
+
+##### RDFが公開されている主要なデータベースとその外部からリンクされやすいリソースのURI prefixed
+
+| データベース名 | Class  |  URI Prefix |
+|-----|------|-------------|
+| UniProt| core:Protein | http://purl.uniprot.org/uniprot/ |
+| Ensembl| obo:SO_0001217(protein_coding_gene) | http://rdf.ebi.ac.uk/resource/ensembl/ |
+| ChEMBL| cco:Substance | http://rdf.ebi.ac.uk/resource/chembl/molecule/ |
+| ExpressionAtlas| atlas:BaseLineExpressionValue | http://rdf.ebi.ac.uk/resource/expressionatlas/ |
+|| atlas:DifferentialExpressionRatio | http://rdf.ebi.ac.uk/resource/expressionatlas/ |
+| Reactome| biopax3:Pathway | http://identifiers.org/reactome/ |
+| BioModels|  ||
+| BioSamples| biosd-terms:Sample | http://rdf.ebi.ac.uk/resource/biosamples/sample |
+| PubChem| compound | http://rdf.ncbi.nlm.nih.gov/pubchem/compound/ |
+| | substance | http://rdf.ncbi.nlm.nih.gov/pubchem/substance |
+| MESH | meshv:TopicalDescriptor | http://id.nlm.nih.gov/mesh/ |
+| wwPDB| PDBo:datablock | http://rdf.wwpdb.org/pdb/1NH2 |
+
+
 #### 1.2.5 文献情報へのリンクをつける
 
 記述している内容の根拠となる文献情報が分かっている場合には、積極的に文献情報へのリンクを付けて下さい。文献情報は、可能な限り[PubMed](http://pubmed.org/)または[DOI](http://doi.org/)のIDを使ってリンクしてください。これらのIDをURI化する際は下記のprefixを利用することを推奨します。
