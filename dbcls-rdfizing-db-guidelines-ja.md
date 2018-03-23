@@ -506,16 +506,17 @@ exproduct:item10245 exterms:weight [
 [Home](http://qudt.org/)) の利用を推奨します。
 
 単位を指すプロパティとしては、[`sio:SIO_000221`](http://semanticscience.org/resource/SIO_000221)
-(sio:has-unit) の利用を推奨します。
+(sio:has-unit) の利用を推奨します。また、数値を指すプロパティとしては、[`sio:SIO_000300`](http://semanticscience.org/resource/SIO_000300)
+(sio:has-value) の利用を推奨します。
 
 ブランクノードを指すプロパティとしては、[`sio:SIO_000216`](http://semanticscience.org/resource/has-unit.rdf)
-(sio:has-measurement-value) の利用を推奨します。`sio:has-measurement-value`
-では、特定の測定値に絞って検索することができませんが、そこことは、以下のように、ブランクノードを適切に定義することで（ブランクノードを、適切なオントロジークラスのインスタンスとすることで）解決できます。
+(sio:has-measurement-value) の利用を推奨します。複数の単位付き数値を、同じ`sio:has-measurement-value`
+プロパティで指すと、プロパティを指定することでは、特定の数値を指定することはできませんが、以下のように、ブランクノードを適切に定義することで（ブランクノードを、適切なオントロジークラスのインスタンスとすることで）解決できます。
 
 ```
 ex:m1 sio:SIO_000216 [  
   rdf:type       cmo:CMO_0000209 ;  
-  rdf:value      21.5 ;  
+  sio:SIO_000300 21.5 ;
   sio:SIO_000221 uo:UO_0000309`  
 ] .  
 
