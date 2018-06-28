@@ -303,8 +303,8 @@ RDFはURI、空白ノード、リテラルの組み合わせで構成されま�
 | FOAF | http://xmlns.com/foaf/0.1/ | [仕様 [英語](http://xmlns.com/foaf/spec/)] |
 | VoID | http://rdfs.org/ns/void# |[仕様 [英語](http://www.w3.org/TR/void/)], [概要 [英語](http://semanticweb.org/wiki/VoID)] |
 | UO | http://purl.obolibrary.org/obo/ | [Home](http://code.google.com/p/unit-ontology/), [BioPortal](http://bioportal.bioontology.org/ontologies/UO) |
-| QUDT | http://qudt.org/schema/qudt/ | [BioPortal](http://bioportal.bioontology.org/ontologies/QUDT) |
-| PROV-O | http://www.w3.org/ns/prov# | [仕様 [英語](http://www.w3.org/TR/prov-o/)], [Home](http://qudt.org/), [BioPortal](http://bioportal.bioontology.org/ontologies/PROVO) |
+| QUDT | http://qudt.org/2.0/schema/qudt/ | [Home](http://qudt.org/doc/2017/DOC_SCHEMA-QUDT-v2.0.html), [BioPortal](http://bioportal.bioontology.org/ontologies/QUDT) |
+| PROV-O | http://www.w3.org/ns/prov# | [仕様 [英語](http://www.w3.org/TR/prov-o/)], [BioPortal](http://bioportal.bioontology.org/ontologies/PROVO) |
 | PAV | http://purl.org/pav/ |[仕様 [英語](http://www.essepuntato.it/lode/http://purl.org/pav/2.0/)], [BioPortal](http://bioportal.bioontology.org/ontologies/PAV) |
 | XSD | http://www.w3.org/2001/XMLSchema# ||
 | DCAT | http://www.w3.org/ns/dcat# | [仕様 [英語](https://www.w3.org/TR/vocab-dcat/), [日本語](http://www.asahi-net.or.jp/~ax2s-kmtn/internet/rdf/REC-vocab-dcat-20140116.html)] |
@@ -346,6 +346,8 @@ RDFはURI、空白ノード、リテラルの組み合わせで構成されま�
   |OrthO | Ortholog Ontology | http://purl.jp/bio/11/orth# |                      [Home](http://mbgd.genome.ad.jp/ontology/), [BioPortal](http://bioportal.bioontology.org/ontologies/ORTHO) |
   |PIERO | PIERO Enzyme Reaction Ontology　| |[Home](http://reactionontology.org/)|
   |GlycoRDF | Glycan Ontology| http://purl.jp/bio/12/glyco/glycan# |               [Home](https://github.com/ReneRanzinger/GlycoRDF), [BioPortal](http://bioportal.bioontology.org/ontologies/GLYCORDF) |
+  |MONDO | Monarch Disease Ontology| http://purl.obolibrary.org/obo/ |               [Home](http://www.obofoundry.org/ontology/mondo.html), [BioPortal](https://bioportal.bioontology.org/ontologies/MONDO) |
+  |HPO | The Human Phenotype Ontology| http://purl.obolibrary.org/obo/ |               [Home](https://hpo.jax.org/), [BioPortal](https://bioportal.bioontology.org/ontologies/HP) |
 
 
 また、言語名に関する語彙としては、米国国会図書館の提供している[ISO　639-1](http://id.loc.gov/vocabulary/iso639-1.html)や、[ISO
@@ -483,7 +485,7 @@ server {
 
 以下では、データベースRDF化ガイドラインの補稿として生命科学データベースのRDF化におけるベストプラクティスを蓄積・共有します。
 
-#### 1.5.1 測定項目および測定値の記述方法
+#### 測定項目および測定値の記述方法
 
 ##### 単位のついた値の記述方法
 
@@ -606,6 +608,8 @@ webをグローバルなデータ空間にする仕組み](http://ci.nii.ac.jp/n
 
 2017-04-13 バージョン 1.8.0 「2.2.9 URIにはバージョンを含めない」を追記。（skwsm）
 
-2017-05-15 バージョン 1.9.0 「2.2.9 文献ss情報へのリンク」。改変（プロパティに関するTo do を推奨へ）（skwsm）
+2017-05-15 バージョン 1.9.0 「2.2.9 文献情報へのリンク」。改変（プロパティに関するTo do を推奨へ）（skwsm）
 
 2018-03-20 バージョン 1.9.1 「1.2.9 httpsで始まるURIを利用しない。」を追記。（skwsm）
+
+2018-06-28 バージョン 1.9.2  1.2.9 QUDTの情報を更新。MONDOとHPOを追加。（skwsm）
