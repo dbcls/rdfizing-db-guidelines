@@ -349,7 +349,8 @@ http://www.linkedmodel.org/catalog/qudt/1.1/index.html
   |PIERO | PIERO Enzyme Reaction Ontology　| |[Home](http://reactionontology.org/)|
   |GlycoRDF | Glycan Ontology| http://purl.jp/bio/12/glyco/glycan# |               [Home](https://github.com/ReneRanzinger/GlycoRDF), [BioPortal](http://bioportal.bioontology.org/ontologies/GLYCORDF) |
   |MONDO | Monarch Disease Ontology| http://purl.obolibrary.org/obo/ |               [Home](http://www.obofoundry.org/ontology/mondo.html), [BioPortal](https://bioportal.bioontology.org/ontologies/MONDO) |
-  |HPO | The Human Phenotype Ontology| http://purl.obolibrary.org/obo/ |               [Home](https://hpo.jax.org/), [BioPortal](https://bioportal.bioontology.org/ontologies/HP) |
+  |HPO | The Human Phenotype Ontology| http://purl.obolibrary.org/obo/ | [Home](https://hpo.jax.org/), [BioPortal](https://bioportal.bioontology.org/ontologies/HP) |
+  |HCO | The Human Chromosome Ontology| http://identifiers.org/hco/ | [github](https://github.com/med2rdf/hco) |
 
 
 また、言語名に関する語彙としては、米国国会図書館の提供している[ISO　639-1](http://id.loc.gov/vocabulary/iso639-1.html)や、[ISO
@@ -542,7 +543,8 @@ ex:m1 rdf:type cmo:CMO_0000209 ;
 
 #### 1.5.2 遺伝子やタンパク質配列座標情報の記述方法
 
-遺伝子やタンパク質等の配列の座標情報を記述する場合、[FALDO](http://biohackathon.org/resource/faldo): Feature Annotation Location Description Ontology [GitHub](https://github.com/JervenBolleman/FALDO)の利用を推奨します。FALDOは、UniProt、Ensembl、DDBJ等のRDFで利用されています。使い方は、[README](https://github.com/JervenBolleman/FALDO/blob/master/README.md) や、[FALDO論文](https://jbiomedsem.biomedcentral.com/articles/10.1186/s13326-016-0067-z)に記載されていますので、それを参考にして下さい
+遺伝子やタンパク質等の配列の座標情報を記述する場合、[FALDO](http://biohackathon.org/resource/faldo): Feature Annotation Location Description Ontology [GitHub](https://github.com/JervenBolleman/FALDO)の利用を推奨します。FALDOは、UniProt、Ensembl、DDBJ等のRDFで利用されています。使い方は、[README](https://github.com/JervenBolleman/FALDO/blob/master/README.md) や、[FALDO論文](https://jbiomedsem.biomedcentral.com/articles/10.1186/s13326-016-0067-z)に記載されていますので、それを参考にして下さい。
+また、FALDOで参照配列を記述する際には、HCO（Human Chromosome Ontology）の利用を推奨します。
 
 * * *
 
@@ -615,3 +617,5 @@ webをグローバルなデータ空間にする仕組み](http://ci.nii.ac.jp/n
 2018-03-20 バージョン 1.9.1 「1.2.9 httpsで始まるURIを利用しない。」を追記。（skwsm）
 
 2018-06-28 バージョン 1.9.2  1.2.9 QUDTの情報を更新。MONDOとHPOを追加。（skwsm）
+
+2018-06-28 バージョン 1.9.3  1.2.9 HCOを追加。1.5.2 HCOの利用について追記。（skwsm）
