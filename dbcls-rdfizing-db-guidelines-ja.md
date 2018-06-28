@@ -303,7 +303,8 @@ RDFはURI、空白ノード、リテラルの組み合わせで構成されま�
 | FOAF | http://xmlns.com/foaf/0.1/ | [仕様 [英語](http://xmlns.com/foaf/spec/)] |
 | VoID | http://rdfs.org/ns/void# |[仕様 [英語](http://www.w3.org/TR/void/)], [概要 [英語](http://semanticweb.org/wiki/VoID)] |
 | UO | http://purl.obolibrary.org/obo/ | [Home](http://code.google.com/p/unit-ontology/), [BioPortal](http://bioportal.bioontology.org/ontologies/UO) |
-| QUDT | http://qudt.org/2.0/schema/qudt/ | [Home](http://qudt.org/doc/2017/DOC_SCHEMA-QUDT-v2.0.html), [BioPortal](http://bioportal.bioontology.org/ontologies/QUDT) |
+| QUDT 1.1 | http://qudt.org/1.1/vocab/unit/ | [Home](http://www.linkedmodel.org/catalog/qudt/1.1/index.html), [BioPortal](http://bioportal.bioontology.org/ontologies/QUDT) |
+| QUDT 2.0 | http://qudt.org/2.0/schema/qudt/ | [Home](http://qudt.org/doc/2017/DOC_SCHEMA-QUDT-v2.0.html) |
 | PROV-O | http://www.w3.org/ns/prov# | [仕様 [英語](http://www.w3.org/TR/prov-o/)], [BioPortal](http://bioportal.bioontology.org/ontologies/PROVO) |
 | PAV | http://purl.org/pav/ |[仕様 [英語](http://www.essepuntato.it/lode/http://purl.org/pav/2.0/)], [BioPortal](http://bioportal.bioontology.org/ontologies/PAV) |
 | XSD | http://www.w3.org/2001/XMLSchema# ||
@@ -312,6 +313,7 @@ RDFはURI、空白ノード、リテラルの組み合わせで構成されま�
 | Event |<http://purl.org/NET/c4dm/event.owl#> | [Home](http://motools.sourceforge.net/event/event.html) |
 | GEO | http://www.w3.org/2003/01/geo/wgs84_pos# | [Home](https://www.w3.org/2003/01/geo/)|
 
+http://www.linkedmodel.org/catalog/qudt/1.1/index.html
 
 そのほか、[Linked Open Vocabularies
 (LOV)](http://lov.okfn.org/dataset/lov/)で広く一般に使われている語彙を見つけることができます。
