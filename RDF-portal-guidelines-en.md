@@ -8,6 +8,14 @@ Life science databases usually cover either one or a few subjects, and their con
 
 Even though RDF is primarily intended to make data more machine-readable, providing natural-language labels for resources can be useful, especially when writing SPARQL queries or displaying application results. Although it is ideal that all resources have lables, at minimum all primary URIs must be labeled using the rdfs:label property. When multiple labels are needed, we recommend using the skos:altLabel property. For resources with multiple labels in different languages, each label should have a language tag so that labels in a specific language can be selected. On the other hand, language-independent literals, such as numerical values and database entry IDs, should not have language tags.
 
+```An example
+chebi:CHEBI_17234 rdfs:label "D-Glucose"@en ;  
+                  rdfs:label "D-グルコース""@ja ;  
+                  skos:altLabel "Dextrose"@en ;  
+                  skos:altLabel ""ブドウ糖""@ja ;  
+                  skos:prefLabel "D-Glucose"@en .
+```
+
 ### 3. Primary resources should provide the local database IDs.
 
 The local database ID is generally placed after the last slash at the end of the primary URI. However, when printing search results and showing them in an application’s user interface, users often find it easier to work with local database IDs rather than full URIs, and local IDs can also be convenient when writing SPARQL queries, for example. To enable this, the primary URI should have a dcterms:identifier property whose value is a literal containing this local ID.
@@ -60,11 +68,14 @@ It is very helpful to see examples of typical queries when querying RDF datasets
 
 Many life science databases provide structural and functional annotations to genome or protein sequences. The FALDO ontology should be used to specify the point in a sequence to be annotated. Since this is already used in various RDF datasets, such as UniProt, Ensembl, and DDBJ, using common sequence coordinates enables us to achieve highly interoperable annotations.
 
+**Note**
+It is planning to introduce a mandatory use of Human Chromosome Ontology ([HCO](https://github.com/med2rdf/hco)) as an object of the faldo:reference property.
+
 ### 11. Structured values should be used for values with units
 
 Structured values should be used to describe numerical values with units by using the Semanticscience Integrated Ontology (SIO) giving at least an sio:SIO_000300 property (i.e., sio:has-value) for the value and an sio:SIO_000221 property (i.e., sio:has-unit) for the unit, as in the example below. Structured values should be typed using an appropriate ontology class, included as an sio:SIO_000216 property (i.e., sio:has-measurement-value). The Units of Measurement Ontology (UO) (http://bioportal.bioontology.org/ontologies/UO) should be used to express units where possible, but another ontology can be used for units not included in the UO.
 
-```
+```An example
 ex:m1 sio:SIO_000216 [
   rdf:type		cmo:CMO_0000209;
   sio:SIO_000300	21.5;
