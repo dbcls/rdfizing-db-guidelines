@@ -2,13 +2,11 @@
 
 ### 1. Primary resources should be instances of an ontology class
 
-Life science databases usually cover either one or a few subjects, and their content is organized by subject. For example, UniProt is a database of protein sequences, each represented as an instance of the up:Protein class in the UniProt RDF. As another example, ChEMBL is a database on the bioactivity of chemical compounds, and its entries are instances of classes such as cco:Assay, cco:Activity, or cco:Substance. Uniform Resource Identifiers (URIs) that represent such subjects (called primary resources from now on) should be defined as instances of an ontology class. This helps to reduce the search spaces of SPARQL queries.
+Life science databases usually cover either one or a few subjects, and their content is organized by subject. For example, UniProt is a database of protein sequences, each represented as an instance of the up:Protein class in the UniProt RDF. As another example, ChEMBL is a database on the bioactivity of chemical compounds, and its entries are instances of classes such as cco:Assay, cco:Activity, or cco:Substance. URIs that represent such subjects (hereinafter, referred to as primary resources) should be defined as instances of an ontology class. This is useful for users to understand the semantics of the subjects. THis also helps to reduce the search spaces of SPARQL queries.  
 
 ### 2. Primary resources should have human-readable labels
 
-Even though RDF is primarily intended to make data more machine-readable, providing natural-language labels for resources can be useful, especially when writing SPARQL queries or displaying application results. Linked Data Patterns, an online design pattern catalog for linked data development, advises us to “Ensure that every resource in a dataset has an rdfs:label property.” Our guidelines also recommend adding labels to as many URIs as possible, but at minimum all primary URIs must be labeled using the rdfs:label property. When multiple labels are needed, we recommend using the skos:altLabel property.
-
-Some of the datasets in this portal contain labels written in Japanese, partly because they were developed in Japan. For resources with multiple labels in different languages, each label should have a language tag so that labels in a specific language can be selected. On the other hand, language-independent literals, such as numerical values and database entry IDs, should not have language tags.
+Even though RDF is primarily intended to make data more machine-readable, providing natural-language labels for resources can be useful, especially when writing SPARQL queries or displaying application results. Although it is ideal that all resources have lables, at minimum all primary URIs must be labeled using the rdfs:label property. When multiple labels are needed, we recommend using the skos:altLabel property. For resources with multiple labels in different languages, each label should have a language tag so that labels in a specific language can be selected. On the other hand, language-independent literals, such as numerical values and database entry IDs, should not have language tags.
 
 ### 3. Primary resources should provide the local database IDs.
 
@@ -16,7 +14,7 @@ The local database ID is generally placed after the last slash at the end of the
 
 ### 4. Links to external resources should be provided in the specified format
 
-With the SW, it is essential that both users and machines can explore the RDF-based Web of Data. Life science databases often provide abundant cross-links to external database entries, but there are usually several different URIs referring to the same database entry, and there are no general rules as to which URI to use when linking to external databases. Therefore, just converting such databases into RDF may not enhance the Web of Data, because these different URIs, even if they are redirected to the same Internet URI, are regarded as different RDF resources.
+With the Semantic Web, it is essential that both users and machines can explore the RDF-based Web of Data. Life science databases often provide abundant cross-links to external database entries, but there are usually several different URIs referring to the same database entry, and there are no general rules as to which URI to use when linking to external databases. Therefore, just converting such databases into RDF may not enhance the Web of Data, because these different URIs, even if they are redirected to the same Internet URI, are regarded as different RDF resources.
 
 To address this problem, we require all external resources to be referred to using the URIs provided by identifiers.org and the rdfs:seeAlso property. This ensures that the same URI will always be used to refer to the same resource in different RDF datasets. One exception to this is that references to the primary resources in an RDF dataset officially released by the database provider must use the URIs defined in the dataset, because datasets do not usually use identifiers.org URIs to describe their own resources. In such cases, it is therefore obligatory to include redundant links to both the canonical and identifers.org URIs.
 
@@ -48,7 +46,7 @@ Although the semantics of individual RDF datasets are left to their developers, 
 
 ### 7. The domain and range of each user-defined property should be explicitly defined
 
-sWhen converting a database to RDF, it may be necessary to define new properties, particularly to express relationships between concepts. When doing so, each property’s domain and range should be defined as explicitly as possible. This helps to make queries more efficient and create applications that build SPARQL queries automatically.
+When converting a database to RDF, it may be necessary to define new properties, particularly to express relationships between concepts. When doing so, each property’s domain and range should be defined as explicitly as possible. This helps to make queries more efficient and create applications that build SPARQL queries automatically.
 
 ### 8. A schema diagram should be provided
 
