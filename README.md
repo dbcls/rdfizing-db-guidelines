@@ -1,1 +1,1 @@
-# DBCLS RDFizing DB guidelines
+# DBCLS guidelines for RDFizing databases
