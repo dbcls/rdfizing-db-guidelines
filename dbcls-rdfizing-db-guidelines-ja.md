@@ -546,6 +546,36 @@ ex:m1 rdf:type cmo:CMO_0000209 ;
 遺伝子やタンパク質等の配列の座標情報を記述する場合、[FALDO](http://biohackathon.org/resource/faldo): Feature Annotation Location Description Ontology [GitHub](https://github.com/JervenBolleman/FALDO)の利用を推奨します。FALDOは、UniProt、Ensembl、DDBJ等のRDFで利用されています。使い方は、[README](https://github.com/JervenBolleman/FALDO/blob/master/README.md) や、[FALDO論文](https://jbiomedsem.biomedcentral.com/articles/10.1186/s13326-016-0067-z)に記載されていますので、それを参考にして下さい。
 また、FALDOで参照配列を記述する際には、HCO（Human Chromosome Ontology）の利用を推奨します。
 
+#### 1.5.3 サンプルを記述する方法
+
+生命科学データベースで、サンプルについて記述することがしばしばあります。そのサンプルが、BioSamples RDFに登録されている場合は、そのURIを参照するようにしてください。参考までに、EBI BioSamplesでは、ユーザがサブミットしたサンプルの特徴を、次のような記述方法で、機械的にRDFへ変換することを計画しています。キーと値のペアがあった場合、
+
+```
+key  value
+```
+
+次のように、変換されます。
+
+```
+ex:sample 
+  ex:hasCharacteristics [
+     ex:propertyType a:mappledOntology ;
+     ex:propertyValue "Original description for a key" ;
+  ] , [
+  ex:propertyType a:mappledOntology ;
+  ex:propertyValue "Original description for a value" ;
+
+  ] .
+
+```
+
+また、サンプルのURIは、sio:SIO_001050（sio:sample）のインスタンスとして定義してください。
+
+```
+ex:e1 rdf:type sio:SIO_001050 .  
+```
+
+
 * * *
 
 ### 参考URL
