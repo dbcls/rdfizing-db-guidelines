@@ -85,7 +85,7 @@ uniprot:Q6GZX3 rdf:type core:Protein .
 
 -   `rdfs:Class`を`rdf:type`の目的語とするとき、その主語はクラスであることを
 ```
-Myclass rdf:type rdfs:Class .
+ex:Myclass rdf:type rdfs:Class .
 ```
 -   あるクラスのURIを`rdf:type`の目的語とするとき、その主語はインスタンスであることを
 ```
