@@ -50,7 +50,7 @@ Dataの原則2で、http://
 -   PURLを利用する
 
 他によく用いられるケースとして、永続的なURLである[Persistent URL(PURL)](https://en.wikipedia.org/wiki/Persistent_uniform_resource_locator)を利用してデータを記述する方法があります。RDFはPURLのURIを用いて記述し、PURLからデータを運用する実体のURLに転送(リダイレクト)することで、実体が移転した場合にもRDFデータの変更を伴わずに同じURIを持続して利用することができます。NBDCでは、研究機関のデータベース運用のために
-[purl.jp](http://purl.jp/docs/) サービスを提供しています。PURLサービスで転送を管理することにより、常にそのときアクセスできる最新のURIを指し示すことができます。
+[purl.jp](http://purl.jp/) サービスを提供しています。PURLサービスで転送を管理することにより、常にそのときアクセスできる最新のURIを指し示すことができます。
 
 #### 1.1.2 リソースを示すURIはそれを識別するためのIDをURIの末尾に記述する
 
