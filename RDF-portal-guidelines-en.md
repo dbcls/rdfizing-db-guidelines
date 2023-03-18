@@ -2,17 +2,17 @@
 
 ### 1. Primary resources should be instances of an ontology class
 
-Life science databases usually cover either one or a few subjects, and their content is organized by subject. For example, UniProt is a database of protein sequences, each represented as an instance of the up:Protein class in the UniProt RDF. As another example, ChEMBL is a database on the bioactivity of chemical compounds, and its entries are instances of classes such as cco:Assay, cco:Activity, or cco:Substance. URIs that represent such subjects (hereinafter, referred to as primary resources) should be defined as instances of an ontology class. This is useful for users to understand the semantics of the subjects. THis also helps to reduce the search spaces of SPARQL queries.  
+Life science databases usually cover either one or a few subjects, and their content is organized by subject. For example, UniProt is a database of protein sequences, each represented as an instance of the up:Protein class in the UniProt RDF. As another example, ChEMBL is a database on the bioactivity of chemical compounds, and its entries are instances of classes such as cco:Assay, cco:Activity, or cco:Substance. URIs that represent such subjects (hereinafter, referred to as primary resources) should be defined as instances of an ontology class. This is useful for users to understand the semantics of the subjects. This also helps to reduce the search spaces of SPARQL queries.
 
 ### 2. Primary resources should have human-readable labels
 
-Even though RDF is primarily intended to make data more machine-readable, providing natural-language labels for resources can be useful, especially when writing SPARQL queries or displaying application results. Although it is ideal that all resources have lables, at minimum all primary URIs must be labeled using the rdfs:label property. When multiple labels are needed, we recommend using the skos:altLabel property. For resources with multiple labels in different languages, each label should have a language tag so that labels in a specific language can be selected. On the other hand, language-independent literals, such as numerical values and database entry IDs, should not have language tags.
+Even though RDF is primarily intended to make data more machine-readable, providing natural-language labels for resources can be useful, especially when writing SPARQL queries or displaying application results. Although it is ideal that all resources have labels, at a minimum all primary URIs must be labeled using the rdfs:label property. When multiple labels are needed, we recommend using the skos:altLabel property. For resources with multiple labels in different languages, each label should have a language tag so that labels in a specific language can be selected. On the other hand, language-independent literals, such as numerical values and database entry IDs, should not have language tags.
 
 ```An example
-chebi:CHEBI_17234 rdfs:label "D-Glucose"@en ;  
-                  rdfs:label "D-グルコース""@ja ;  
-                  skos:altLabel "Dextrose"@en ;  
-                  skos:altLabel ""ブドウ糖""@ja ;  
+chebi:CHEBI_17234 rdfs:label "D-Glucose"@en ;
+                  rdfs:label "D-グルコース""@ja ;
+                  skos:altLabel "Dextrose"@en ;
+                  skos:altLabel ""ブドウ糖""@ja ;
                   skos:prefLabel "D-Glucose"@en .
 ```
 
@@ -50,7 +50,7 @@ The dataset submitter should provide the following metadata: the dataset provide
 
 ### 6. Widely-used ontologies should be used where possible
 
-Although the semantics of individual RDF datasets are left to their developers, we encourage the use of widely-used ontologies where possible. The DBCLS guidelines for RDFizing databases therefore list the ontologies we recommend.
+Although the semantics of individual RDF datasets are left to their developers, we encourage the use of widely-used ontologies where possible. The DBCLS guidelines for RDFizing databases, therefore, list the ontologies we recommend.
 
 ### 7. The domain and range of each user-defined property should be explicitly defined
 
@@ -73,7 +73,7 @@ It is planning to introduce a mandatory use of Human Chromosome Ontology ([HCO](
 
 ### 11. Structured values should be used for values with units
 
-Structured values should be used to describe numerical values with units by using the Semanticscience Integrated Ontology (SIO) giving at least an sio:SIO_000300 property (i.e., sio:has-value) for the value and an sio:SIO_000221 property (i.e., sio:has-unit) for the unit, as in the example below. Structured values should be typed using an appropriate ontology class, included as an sio:SIO_000216 property (i.e., sio:has-measurement-value). The Units of Measurement Ontology (UO) (http://bioportal.bioontology.org/ontologies/UO) should be used to express units where possible, but another ontology can be used for units not included in the UO.
+Structured values should be used to describe numerical values with units by using the Semanticscience Integrated Ontology (SIO) giving at least a sio:SIO_000300 property (i.e., sio:has-value) for the value and an sio:SIO_000221 property (i.e., sio:has-unit) for the unit, as in the example below. Structured values should be typed using an appropriate ontology class, included as a sio:SIO_000216 property (i.e., sio:has-measurement-value). The Units of Measurement Ontology (UO) (http://bioportal.bioontology.org/ontologies/UO) should be used to express units where possible, but another ontology can be used for units not included in the UO.
 
 ```An example
 ex:m1 sio:SIO_000216 [
