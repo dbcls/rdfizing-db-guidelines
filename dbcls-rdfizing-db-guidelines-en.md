@@ -1,4 +1,4 @@
-# Guidelines for converting DBCLS database to RDF
+# DBCLS guidelines for RDFizing databases
 
 The following is an automatic translation of [the DBCLS Guidelines for rdfizing databases, written in Japanese](https://github.com/dbcls/rdfizing-db-guidelines/blob/master/dbcls-rdfizing-db-guidelines-ja.md).
 
